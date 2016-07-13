@@ -1,0 +1,37 @@
+<?php require_once 'layouts/header.php' ?>
+
+<div class="container">
+    <div  class="col-md-3 col-md-offset-4 us-all-info">
+        <h3 class="user-firstname">Firstname: <span></span></h3>
+        <h3 class="user-lastname">Lastname: <span></span></h3>
+        <h3 class="user-email">Email: <span></span></h3>
+        <h3 class="user-phone">Phone: <span></span></h3>
+    </div>
+</div>
+
+<script>
+
+    // Get a database reference to Users
+    var user = new Firebase("https://shop-3cea1.firebaseio.com/Shop/user/<?=$userId?>")
+
+        .once('value', showUser);
+
+    function showUser(snap) {
+
+        var UserInfo = snap.val();
+
+        if(UserInfo != null){
+            $('.user-firstname span').text(UserInfo.FirstName);
+            $('.user-lastname  span').text(UserInfo.LastName);
+            $('.user-email     span').text(UserInfo.Email);
+            $('.user-phone     span').text(UserInfo.Phone);
+        }else{
+            $('.us-all-info').html('<h2>No Information</h2>');
+        }
+
+    }
+
+
+</script>
+
+<?php require_once 'layouts/footer.php' ?>

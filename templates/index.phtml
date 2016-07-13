@@ -1,0 +1,51 @@
+<?php require_once 'layouts/header.php' ?>
+
+<h2 class="text-center">Welcome ,Firebase with Slim</h2>
+
+
+<script>
+
+    //    Create Firebase Db
+    var ref      = new Firebase("https://shop-3cea1.firebaseio.com/");
+    var usersRef = ref.child("Shop");
+
+    usersRef.set({
+        user:[
+            {
+                FirstName: "David",
+                LastName: "Johnson",
+                Email: "dav@gmail.com",
+                Phone: "364 84 34 58"
+            },
+            {
+                FirstName: "Jane",
+                LastName: "Parker",
+                Email: "Jane@gmail.com",
+                Phone: "978 64 32 12"
+            }
+        ],
+
+        order: [
+            {
+                userId:"1",
+                OrderNumber: "2",
+                OrderTotal: "100",
+                OrderDate:"12-26-2016",
+                OrderStatus:"1"
+            },
+            {
+                userId:"0",
+                OrderNumber: "456455522",
+                OrderTotal: "10000",
+                OrderDate:"04-08-2016",
+                OrderStatus:"1"
+            }
+
+        ]
+
+    });
+    
+</script>
+
+
+<?php require_once 'layouts/footer.php' ?>

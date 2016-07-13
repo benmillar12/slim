@@ -1,0 +1,44 @@
+<?php require_once 'layouts/header.php' ?>
+
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <h2 class=" text-center order-status"></h2>
+    </div>
+</div>
+
+
+<script>
+
+        var updateOrderStatus = new Firebase('https://shop-3cea1.firebaseio.com/Shop/order/<?=$orderId?>');
+        var fredNameRef = new Firebase('https://shop-3cea1.firebaseio.com/Shop/order/<?=$orderId?>').once('value', showOneOrder);
+
+        function showOneOrder(snap) {
+
+            var OrderInfo = snap.val();
+
+            if (OrderInfo != null) {
+
+                var orderStatus = OrderInfo.OrderStatus;
+
+                if (orderStatus == 1) {
+
+                    updateOrderStatus.update({OrderStatus: '2'});
+
+                    $('.order-status').text('Order Status Updated');
+
+                } else {
+
+                    $('.order-status').text('Order Status is already 2');
+
+                }
+            } else {
+
+                $('.order-status').text('No Information');
+
+            }
+        }
+
+</script>
+
+
+<?php require_once 'layouts/footer.php' ?>
